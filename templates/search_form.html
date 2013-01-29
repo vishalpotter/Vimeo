@@ -1,0 +1,15 @@
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if vimeos %}
+    <p>Found {{ length }} users.</p>
+    <ul>
+        {% for users in vimeos %}
+        <li><p>{{ users.Name }}-
+		Paying?{{users.Paying}}|||
+		StaffPick?{{users.StaffPick}}|||
+		Uploaded?{{users.Video}}</p></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No users matched your search criteria.</p>
+{% endif %}

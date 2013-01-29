@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>Search</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+  $('input[name=info]').attr('checked', false);
+  txt=$("#user").val();
+    $.get("/search/",{q:txt},function(result,status){
+	$("p").empty();
+    $("p").append(result);
+	 });
+  });
+  $("#user").change(function() { $("p").empty();
+$('input[name=info]').attr('checked', false);
+  });
+  $("#All").click(function(){
+  if($("p").html())
+  {
+  txt=$("#user").val();
+    $.get("/search/",{q:txt},function(result,status){
+	$("p").empty();
+    $("p").append(result);
+	 });
+  }});
+  $("#Paying").click(function(){
+  if($("p").html())
+  {
+  txt=$("#user").val();
+    $.get("/searchpay/",{q:txt},function(result,status){
+	$("p").empty();
+    $("p").append(result);
+	 });
+  }});
+  $("#Uploaded").click(function(){
+  if($("p").html())
+  {
+  txt=$("#user").val();
+    $.get("/searchupl/",{q:txt},function(result,status){
+	$("p").empty();
+    $("p").append(result);
+	 });
+  }});
+  $("#StaffPick").click(function(){
+  if($("p").html())
+  {
+  txt=$("#user").val();
+    $.get("/searchspk/",{q:txt},function(result,status){
+	$("p").empty();
+    $("p").append(result);
+	 });
+  }});
+});
+</script>
+</head>
+<body>
+    
+        <input type="text" id="user">
+		<button>Search</button><br>
+		Filter: <input type="radio" name="info" id="All">All|
+		<input type="radio" name="info" id="Paying">Paying|
+		<input type="radio" name="info" id="Uploaded">Uploaded|
+		<input type="radio" name="info" id="StaffPick">StaffPick
+		<p></p>
+    
+</body>
+</html>
